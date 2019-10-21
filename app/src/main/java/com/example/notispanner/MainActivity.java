@@ -15,8 +15,17 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,18 +58,17 @@ public class MainActivity extends AppCompatActivity {
 //                removeNotification();
 //            }
 //        });
-
     }
 
     private void createNotification() {
-
+        
         // Notification 빌더 생성 & 설정
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
-
-        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));   // Bitmap 이미지를 넣음
-        builder.setContentTitle("COUPANG");  // 큰 제목
-        builder.setContentText("모자 특가 할인 중!");
-        builder.setStyle(new NotificationCompat.BigTextStyle().bigText("누구보다 빠르게 할인 혜택을 받아보세요."));
+//        // 이미지 로드 시 에러 발생
+//        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));   // Bitmap 이미지를 넣음
+        builder.setContentTitle("NotiSpanner");  // 큰 제목
+        builder.setContentText(getJsonArrayDataRandomly(getJsonString()).substring(0, 15) + "..");
+        builder.setStyle(new NotificationCompat.BigTextStyle().bigText(getJsonArrayDataRandomly(getJsonString())));
         builder.setPriority(NotificationCompat.PRIORITY_DEFAULT); // 우선순위 지정
         builder.setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class),  PendingIntent.FLAG_UPDATE_CURRENT));  // 알림 클릭 시, 해당 액티비티를 실행
         builder.setAutoCancel(true);     // 사용자가 탭을 클릭하면 자동 제거
@@ -95,5 +103,41 @@ public class MainActivity extends AppCompatActivity {
 //    private void removeNotification(){
 //        NotificationManagerCompat.from(this).cancel(1234); // 알림 임의 삭제 시, 생성한 아이디로 cancel() 메소드를 사용
 //    }
+
+
+
+    private String getJsonString(){
+        String json = "";
+
+        try{
+            InputStream is = getAssets().open("samples.json");
+            int fileSize = is.available();
+
+            byte[] buffer = new byte[fileSize];
+            is.read(buffer);
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+
+            return json;
+
+        }catch(IOException e){
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    private String getJsonArrayDataRandomly(String jsonData){
+
+        try {
+            JSONArray jArray = new JSONObject(jsonData).getJSONArray("data");
+            return jArray.getString(new Random().nextInt(jArray.length()-2)-1);
+
+        } catch(JSONException e) {
+            e.printStackTrace();
+            return "";
+        }
+
+    }
 
 }
