@@ -1,14 +1,14 @@
+
 # noti-spanner
+[![GitHub Release Date](https://img.shields.io/github/release-date/noti-dropper/noti-spanner)](https://github.com/noti-dropper/noti-spanner/releases) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/noti-dropper/noti-spanner)](https://github.com/noti-dropper/noti-spanner/releases) [![GitHub license](https://img.shields.io/github/license/noti-dropper/noti-spanner)](https://github.com/noti-dropper/noti-spanner/blob/master/LICENSE) 
 
-> 앱을 테스트하기 위해 노티를 임의 생성합니다.
-
-
+## Descriptions
+ - `알림서랍`앱을 테스트하기 위해 알림을 랜덤으로 생성하는 앱입니다.
+ - APK 파일은 [여기](https://github.com/noti-dropper/noti-spanner/releases)를 눌러 받으실 수 있습니다.
+ - Notification 데이터 셋은 [여기](https://github.com/noti-dropper/noti-spanner/blob/master/app/src/main/assets/samples.json)를 참고하십시오.
 
 ## How to
-
 - JSON으로 생성된 Notification 예제를 랜덤으로 선정하여 알림을 생성
-
-
 
 ## 참고
 - [안드로이드 Notification 예제(>=Oreo)](https://webnautes.tistory.com/665)
