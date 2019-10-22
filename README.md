@@ -1,6 +1,6 @@
 
-# noti-spanner
-[![GitHub Release Date](https://img.shields.io/github/release-date/noti-dropper/noti-spanner)](https://github.com/noti-dropper/noti-spanner/releases) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/noti-dropper/noti-spanner)](https://github.com/noti-dropper/noti-spanner/releases) [![GitHub license](https://img.shields.io/github/license/noti-dropper/noti-spanner)](https://github.com/noti-dropper/noti-spanner/blob/master/LICENSE) 
+# noti-spanner [![GitHub Release Date](https://img.shields.io/github/release-date/noti-dropper/noti-spanner)](https://github.com/noti-dropper/noti-spanner/releases) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/noti-dropper/noti-spanner)](https://github.com/noti-dropper/noti-spanner/releases) [![GitHub license](https://img.shields.io/github/license/noti-dropper/noti-spanner)](https://github.com/noti-dropper/noti-spanner/blob/master/LICENSE) 
+
 
 ## Descriptions
  - `알림서랍`앱을 테스트하기 위해 알림을 랜덤으로 생성하는 앱입니다.
