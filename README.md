@@ -1,5 +1,5 @@
 
-# Noti-Spanner [![GitHub Release Date](https://img.shields.io/github/release-date/noti-dropper/noti-spanner)](https://github.com/noti-dropper/noti-spanner/releases) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/noti-dropper/noti-spanner)](https://github.com/noti-dropper/noti-spanner/releases) [![GitHub license](https://img.shields.io/github/license/noti-dropper/noti-spanner)](https://github.com/noti-dropper/noti-spanner/blob/master/LICENSE) 
+# Noti-Spawner [![GitHub Release Date](https://img.shields.io/github/release-date/noti-dropper/noti-spanner)](https://github.com/noti-dropper/noti-spanner/releases) [![GitHub release (latest by date)](https://img.shields.io/github/v/release/noti-dropper/noti-spanner)](https://github.com/noti-dropper/noti-spanner/releases) [![GitHub license](https://img.shields.io/github/license/noti-dropper/noti-spanner)](https://github.com/noti-dropper/noti-spanner/blob/master/LICENSE) 
 
 
 ## Descriptions
