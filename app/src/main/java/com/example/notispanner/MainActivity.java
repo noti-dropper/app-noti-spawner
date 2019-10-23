@@ -1,34 +1,28 @@
 package com.example.notispanner;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
 
+
+public class MainActivity extends AppCompatActivity {
 
     private static final String NOTIFICATION_CHANNEL_ID = "10001";
     private Button create;
@@ -61,19 +55,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void createNotification() {
-        
+
         // Notification 빌더 생성 & 설정
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
 //        // 이미지 로드 시 에러 발생
+
+        String notiMsg = getJsonArrayDataRandomly(getJsonString());
+
 //        builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));   // Bitmap 이미지를 넣음
-        builder.setContentTitle("NotiSpanner");  // 큰 제목
-        builder.setContentText(getJsonArrayDataRandomly(getJsonString()).substring(0, 15) + "..");
-        builder.setStyle(new NotificationCompat.BigTextStyle().bigText(getJsonArrayDataRandomly(getJsonString())));
+
+//        // 참고 템플릿
+//        builder.setContentTitle("NotiSpanner");
+//        builder.setSubText("테스트 알림");     // 부제목
+//        builder.setStyle(new NotificationCompat.BigTextStyle().setBigContentTitle("알림이 생성됨").bigText("스포너에서 알림을 생성했습니다. 확인하시려면 여기를 누르세요."));
+//        builder.setContentText("스포너에서 알림을 생성했습니다."); // 작은 메시지
+
+        builder.setContentTitle("");  // 주석 처리하면 접고펼수 있는 알림이 됨
+        builder.setSubText("정보");     // 부제목
+        builder.setStyle(new NotificationCompat.BigTextStyle().setBigContentTitle("알림이 생성됨").bigText(notiMsg).setSummaryText(""));
+        builder.setContentText( notiMsg.length() > 20 ? notiMsg.substring(0,20)+".." : notiMsg ); // 작은 메시지
+
         builder.setPriority(NotificationCompat.PRIORITY_DEFAULT); // 우선순위 지정
         builder.setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class),  PendingIntent.FLAG_UPDATE_CURRENT));  // 알림 클릭 시, 해당 액티비티를 실행
         builder.setAutoCancel(true);     // 사용자가 탭을 클릭하면 자동 제거
         builder.setColor(Color.GREEN);   // 알림 아이콘의 배경색을 지정
-
 
         // 알림 생성
         NotificationManager notificationManager = (NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -81,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
             // 오레오 이상 버전일 때
             builder.setSmallIcon(R.mipmap.ic_launcher);
 
-            CharSequence channelName  = "혜택 알림";
-            String description = "쿠팡 최신 혜택을 알려드립니다.";
+            CharSequence channelName  = "테스트 알림";
+            String description = "테스트 알림 서비스입니다.";
             int importance = NotificationManager.IMPORTANCE_HIGH;  // 중요도를 높여 상단 알림창이 뜨도록 함.
 
             NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName , importance);
@@ -105,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
-
     private String getJsonString(){
         String json = "";
 
@@ -126,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
             return "";
         }
     }
+
 
     private String getJsonArrayDataRandomly(String jsonData){
 
