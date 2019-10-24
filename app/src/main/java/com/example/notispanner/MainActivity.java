@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import org.json.JSONArray;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     // id를 바꾸어서 알림 생성 버튼 클릭 시 계속해서 알림이 생성됨.
     int idManager = 0;
 
+    int flag = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 createNotification();
+                flag++;
             }
         });
 //        // 알림 삭제 기능
@@ -136,7 +140,12 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             JSONArray jArray = new JSONObject(jsonData).getJSONArray("data");
-            return jArray.getString(new Random().nextInt(jArray.length()-2)-1);
+
+            if (flag < 10){
+                return jArray.getString(flag);
+            } else {
+                return jArray.getString(new Random().nextInt(jArray.length()));
+            }
 
         } catch(JSONException e) {
             e.printStackTrace();
